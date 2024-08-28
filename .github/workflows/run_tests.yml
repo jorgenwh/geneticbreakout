@@ -28,10 +28,3 @@ jobs:
 
     - name: Run tests
       run: cargo test
-
-    - name: Upload test results
-      if: failure()
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: target/debug/deps
