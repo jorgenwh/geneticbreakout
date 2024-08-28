@@ -1,0 +1,6 @@
+[package]
+name = "geneticbreakout"
+version = "0.1.0"
+authors = ["Jørgen Henriksen", "Daniel Smolsky"]
+homepage = "https://github.com/jorgenwh/geneticbreakout"
+repository = "https://github.com/jorgenwh/geneticbreakout"
