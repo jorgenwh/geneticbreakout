@@ -46,7 +46,14 @@ impl Arena {
         }
     }
 
-    pub fn draw_block_polygon(&self) {}
+    pub fn draw_block_polygons(&self) {
+        for i in 0..self.blocks_array.len() {
+            for j in 0..self.blocks_array[i].len() {
+                print!("{}, ", self.blocks_array[i][j]);
+            }
+            println!();
+        }
+    }
 
     pub fn arena_info(&self) {
         println!(
