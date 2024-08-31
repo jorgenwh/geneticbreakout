@@ -1,2 +1,4 @@
 mod matrix;
-pub use mat::matrix::Matrix;
+
+#[allow(unused_imports)]
+pub use self::matrix::Matrix;

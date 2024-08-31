@@ -16,7 +16,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Check code format
+    - name: Run fmt
+      run: cargo fmt --check
+
+  clippy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run clippy
       run: cargo fmt --check
 
   test:
