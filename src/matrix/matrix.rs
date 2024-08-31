@@ -15,6 +15,18 @@ impl Matrix {
         }
     }
 
+    pub fn rows(&self) -> usize {
+        self.rows
+    }
+
+    pub fn cols(&self) -> usize {
+        self.cols
+    }
+
+    pub fn shape(&self) -> (usize, usize) {
+        (self.rows, self.cols)
+    }
+
     pub fn set(&mut self, row: usize, col: usize, value: f32) {
         self.data[row * self.cols + col] = value;
     }
