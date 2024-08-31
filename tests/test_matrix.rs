@@ -3,7 +3,7 @@ use geneticbreakout::matrix::matrix::Matrix;
 #[test]
 fn test_data() {
     let mut m = Matrix::new(2, 2);
-    
+
     assert_eq!(m.get(0, 0), 0.0);
     assert_eq!(m.get(1, 1), 0.0);
 
