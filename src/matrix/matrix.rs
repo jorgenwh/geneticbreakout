@@ -1,4 +1,4 @@
-#[allow(dead_code)]
+#[derive(Debug, PartialEq)]
 pub struct Matrix {
     rows: usize,
     cols: usize,
