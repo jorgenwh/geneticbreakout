@@ -1,3 +1,6 @@
+// An attribute to hide warnings for unused code.
+#![allow(dead_code)]
+
 pub struct Arena {
     h_blocks: u16,
     v_blocks: u16,
@@ -7,6 +10,7 @@ pub struct Arena {
     paddle_to_blocks_distance: u16,
     paddle_width: u16,
     blocks_array: Vec<Vec<bool>>,
+    blocks_perimeter: Vec<Vec<bool>>,
 }
 
 impl Default for Arena {
@@ -19,7 +23,8 @@ impl Default for Arena {
             block_padding: 4,
             paddle_to_blocks_distance: 30,
             paddle_width: 20,
-            blocks_array: vec![vec![true; 20]; 10],
+            blocks_array: vec![vec![true; 14]; 8],
+            blocks_perimeter: vec![vec![false; 14]; 8],
         }
     }
 }
@@ -42,14 +47,55 @@ impl Arena {
             block_padding,
             paddle_to_blocks_distance,
             paddle_width,
-            blocks_array: vec![vec![true; block_width as usize]; block_height as usize],
+            blocks_array: vec![vec![true; h_blocks as usize]; v_blocks as usize],
+            blocks_perimeter: vec![vec![false; h_blocks as usize]; v_blocks as usize],
         }
     }
 
-    pub fn draw_block_polygons(&self) {
+    pub fn find_perimeter(&mut self) -> &Vec<Vec<bool>> {
+        for i in 0..self.blocks_array.len() {
+            for j in 0..self.blocks_array[i].len() {
+                if self.blocks_array[i][j] {
+                    if i == 0
+                        || i == self.blocks_array.len() - 1
+                        || j == 0
+                        || j == self.blocks_array[i].len() - 1
+                    {
+                        self.blocks_perimeter[i][j] = true;
+                    } else {
+                        if !self.blocks_array[i - 1][j]
+                            || !self.blocks_array[i + 1][j]
+                            || !self.blocks_array[i][j - 1]
+                            || !self.blocks_array[i][j + 1]
+                        {
+                            self.blocks_perimeter[i][j] = true;
+                        }
+                    }
+                }
+            }
+        }
+        &self.blocks_perimeter
+    }
+
+    pub fn break_block(&mut self, x: u16, y: u16) {
+        if x < self.h_blocks && y < self.v_blocks {
+            self.blocks_array[y as usize][x as usize] = false;
+        }
+    }
+
+    pub fn print_blocks(&self) {
         for i in 0..self.blocks_array.len() {
             for j in 0..self.blocks_array[i].len() {
                 print!("{}, ", self.blocks_array[i][j]);
+            }
+            println!();
+        }
+    }
+
+    pub fn print_perimeter(&self) {
+        for i in 0..self.blocks_perimeter.len() {
+            for j in 0..self.blocks_perimeter[i].len() {
+                print!("{}, ", self.blocks_perimeter[i][j]);
             }
             println!();
         }
@@ -72,5 +118,9 @@ impl Arena {
 
     pub fn get_blocks(&self) -> (u16, u16) {
         (self.h_blocks, self.v_blocks)
+    }
+
+    pub fn get_blocks_array(&self) -> &Vec<Vec<bool>> {
+        &self.blocks_array
     }
 }

@@ -1,21 +1,24 @@
-mod breakout_implementation {
+mod breakout {
     pub mod arena;
     pub mod ball;
 }
 
 fn main() {
-    let arena = breakout_implementation::arena::Arena::default();
+    let mut arena = breakout::arena::Arena::default();
+
     arena.arena_info();
     println!("Arena size (width by height): {:?}", arena.arena_size());
     println!("Blocks in the arena: {:?}", arena.get_blocks());
-    let (width, height) = arena.get_blocks();
-    let blocks_array: Vec<Vec<bool>> = vec![vec![true; width as usize]; height as usize];
 
-    //print the blocks array
-    for i in 0..blocks_array.len() {
-        for j in 0..blocks_array[i].len() {
-            print!("{}, ", blocks_array[i][j]);
-        }
-        println!();
-    }
+    println!("Blocks array:");
+    arena.print_blocks();
+
+    println!("Perimeter blocks:");
+    arena.find_perimeter();
+    arena.print_perimeter();
+
+    println!("Breaking block at x: 14, y: 8");
+    arena.break_block(0, 0);
+    arena.find_perimeter();
+    arena.print_perimeter();
 }
