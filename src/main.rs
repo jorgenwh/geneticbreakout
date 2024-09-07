@@ -14,11 +14,11 @@ fn main() {
     arena.print_blocks();
 
     println!("Perimeter blocks:");
-    arena.find_perimeter();
+    arena.init_perimeter();
     arena.print_perimeter();
 
     println!("Breaking block at x: 14, y: 8");
     arena.break_block(0, 0);
-    arena.find_perimeter();
+    arena.init_perimeter();
     arena.print_perimeter();
 }

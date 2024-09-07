@@ -52,26 +52,24 @@ impl Arena {
         }
     }
 
-    pub fn find_perimeter(&mut self) -> &Vec<Vec<bool>> {
+    pub fn init_perimeter(&mut self) -> &Vec<Vec<bool>> {
         for i in 0..self.blocks_array.len() {
             for j in 0..self.blocks_array[i].len() {
-                if self.blocks_array[i][j] {
-                    if i == 0
-                        || i == self.blocks_array.len() - 1
-                        || j == 0
-                        || j == self.blocks_array[i].len() - 1
-                    {
-                        self.blocks_perimeter[i][j] = true;
-                    } else {
-                        if !self.blocks_array[i - 1][j]
-                            || !self.blocks_array[i + 1][j]
-                            || !self.blocks_array[i][j - 1]
-                            || !self.blocks_array[i][j + 1]
-                        {
-                            self.blocks_perimeter[i][j] = true;
-                        }
-                    }
+                if i == 0
+                    || i == self.blocks_array.len() - 1
+                    || j == 0
+                    || j == self.blocks_array[i].len() - 1
+                {
+                    self.blocks_perimeter[i][j] = true;
                 }
+                // else {
+                //     if !self.blocks_array[i - 1][j]
+                //         || !self.blocks_array[i + 1][j]
+                //         || !self.blocks_array[i][j - 1]
+                //         || !self.blocks_array[i][j + 1]
+                //     {
+                //         self.blocks_perimeter[i][j] = true;
+                //     }
             }
         }
         &self.blocks_perimeter
@@ -95,7 +93,12 @@ impl Arena {
     pub fn print_perimeter(&self) {
         for i in 0..self.blocks_perimeter.len() {
             for j in 0..self.blocks_perimeter[i].len() {
-                print!("{}, ", self.blocks_perimeter[i][j]);
+                // print!("{}, ", self.blocks_perimeter[i][j]);
+                if self.blocks_perimeter[i][j] {
+                    print!("X ");
+                } else {
+                    print!("  ");
+                }
             }
             println!();
         }
