@@ -1,5 +1,5 @@
 // An attribute to hide warnings for unused code.
-#![allow(dead_code)]
+// #![allow(dead_code)]
 
 pub struct Arena {
     h_blocks: u16,

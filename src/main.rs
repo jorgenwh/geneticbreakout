@@ -18,7 +18,9 @@ fn main() {
     arena.print_perimeter();
 
     println!("Breaking block at x: 14, y: 8");
-    arena.break_block(0, 0);
+    arena.break_block(14, 8);
     arena.init_perimeter();
     arena.print_perimeter();
+
+    arena.print_blocks();
 }
