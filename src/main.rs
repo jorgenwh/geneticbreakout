@@ -22,4 +22,8 @@ fn main() {
     let c = matrix::ops::matmul(&a, &b);
 
     println!("c={:?}", c);
+
+    println!("a:\n{}", a);
+    println!("b:\n{}", b);
+    println!("a:\n{}", c);
 }
