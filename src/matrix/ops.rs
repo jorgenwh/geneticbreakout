@@ -17,4 +17,3 @@ pub fn matmul(a: &Matrix, b: &Matrix) -> Matrix {
 
     result
 }
-

@@ -34,7 +34,6 @@ fn test_reshape() {
         for j in 0..3 {
             m.set(i, j, (i * 3 + j) as f32);
         }
-
     }
     assert_eq!(m.rows(), 2);
     assert_eq!(m.cols(), 3);
